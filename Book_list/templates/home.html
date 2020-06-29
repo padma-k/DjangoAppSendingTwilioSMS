@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if all_items %}
+        <table class="table table-hover" style="width:100%">
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Language</th>
+
+            </tr>
+            {% for items in all_items %}
+                <form class="form-inline my-2 my-lg-0" method="POST">
+                <tr scope="row">
+
+                    <td>
+                        {{ items.name }}
+                        <input type="hidden" value=" {{ items.name }}" name="name">
+                    </td>
+                    <td>
+                        {{ items.language }}
+                    </td>
+
+                    <td>
+                        <input type="hidden" value="{{ items.price }}" name="price">
+                    </td>
+                    <td>
+
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ items.amazonlink }}" name="amazonlink">
+                            <input class="font-weight-lighter" type="recipientPhone" placeholder="Phone# +19782345678" aria-label="RecipientPhone"
+                                   name="recipientPhone">
+</td>
+                    <td>
+                        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Get Price Details</button>
+
+
+                    </td>
+
+                </tr>
+                </form>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}
+
